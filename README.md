@@ -11,6 +11,7 @@ This repository serves as the documentation hub for Nautilus libraries, providin
 | Library | Description | Package | Documentation |
 |---------|-------------|---------|----------------|
 | [Nautilus.FluentResult](./nautilus-fluentresult/) | Type-safe Result Pattern library for .NET error handling | [NuGet](https://www.nuget.org/packages/Nautilus.FluentResult/) | [README](./nautilus-fluentresult/) |
+| [Nautilus.HandlerPattern](./nautilus-handlerpattern/) | Handler Pattern (Mediator/CQRS) with pipeline behaviors | [NuGet](https://www.nuget.org/packages/Nautilus.HandlerPattern/) | [README](./nautilus-handlerpattern/) |
 
 ## About Nautilus Libraries
 
