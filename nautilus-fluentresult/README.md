@@ -1,6 +1,6 @@
 # Nautilus.FluentResult
 
-[![Build Status](https://github.com/shahzshafie/nautilus-fluentresult/actions/workflows/ci.yml/badge.svg)](https://github.com/shahzshafie/nautilus-fluentresult/actions/workflows/ci.yml)
+[![Build Status](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/v/Nautilus.FluentResult)](https://www.nuget.org/packages/Nautilus.FluentResult/)
 [![License: BSL-1.1](https://img.shields.io/badge/License-BSL--1.1-blue.svg)](LICENSE)
 
