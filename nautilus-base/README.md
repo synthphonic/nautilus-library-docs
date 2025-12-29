@@ -9,7 +9,7 @@ A foundational .NET library providing data access abstraction and configuration 
 ## Features
 
 - **Provider Pattern Architecture**: Abstract base class for implementing database-specific providers
-- **Multi-Framework Support**: Targets `netstandard2.0`, `net6.0`, `net7.0`, and `net8.0`
+- **Multi-Framework Support**: Targets `netstandard2.0`, `net6.0`, `net7.0`, `net8.0`, `net9.0`, and `net10.0`
 - **CRUD Operations**: Complete set of Create, Read, Update, and Delete methods
 - **Async/Await Support**: Async variants for all data operations
 - **Entity Mapping**: Attribute-based mapping for entities to database tables
@@ -248,6 +248,39 @@ Abstract base class for all data provider implementations.
 | `ExecuteStoredProcedureList<T1, T2>(...)` | `(IEnumerable<T1>, T2)` | Executes SP returning two result sets |
 | `ExecuteStoredProcedureList<T1, T2, T3>(...)` | `(IEnumerable<T1>, T2, T3)` | Executes SP returning three result sets |
 
+### IDataProvider Interface
+
+The `IDataProvider` interface defines the core contract that all data providers must implement. This interface provides:
+
+- Database-agnostic abstraction
+- Consistent API across all database providers
+- Support for dependency injection patterns
+
+```csharp
+public interface IDataProvider
+{
+    // CRUD Operations
+    T Get<T>(object primaryKey);
+    Task<T> GetAsync<T>(object primaryKey);
+    IEnumerable<T> GetAll<T>();
+    Task<IEnumerable<T>> GetAllAsync<T>();
+
+    object Save(object model);
+    Task<object> SaveAsync(object model);
+    int Update(object model);
+    Task<int> UpdateAsync(object model);
+
+    // Query Operations
+    Dictionary<string, object> ExecuteQuery(string sql);
+    Task<Dictionary<string, object>> ExecuteQueryAsync(string sql);
+}
+```
+
+**Key Points:**
+- `DataProviderBase` implements `IDataProvider`
+- Concrete providers (PostgreSql, MongoDb, MsSql) inherit from `DataProviderBase`
+- Use `IDataProvider` for dependency injection to keep your application database-agnostic
+
 ### Entity Attributes
 
 #### [Table]
@@ -294,6 +327,70 @@ Maps a property to a database column.
 | `tableType` | `Type` | Type representing the referenced table (for foreign keys) |
 | `targetColumn` | `string` | Target column in referenced table |
 | `ColumnName` | `string` | Column name to use in current table |
+
+#### Database-Specific Column Type Attributes
+
+These attributes provide additional control over column definitions in the database:
+
+```csharp
+[Varchar(50)]
+[Char(10)]
+[NVarchar(100)]
+[Decimal(18, 2)]
+[Varbinary(512)]
+```
+
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| `[Varchar(length)]` | Specifies variable-length character column | `[Varchar(255)] public string Name;` |
+| `[Char(length)]` | Specifies fixed-length character column | `[Char(10)] public string Code;` |
+| `[NVarchar(length)]` | Specifies Unicode variable-length column | `[NVarchar(100)] public string Description;` |
+| `[Decimal(precision, scale)]` | Specifies decimal column precision | `[Decimal(18, 2)] public decimal Price;` |
+| `[Varbinary(length)]` | Specifies binary data column | `[Varbinary(512)] public byte[] Data;` |
+
+#### Constraint Attributes
+
+Attributes for defining database constraints:
+
+```csharp
+[NotNull]
+[Default("CURRENT_TIMESTAMP")]
+[AutoIncrement]
+[ConstraintDefault("ACTIVE")]
+```
+
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| `[NotNull]` | Marks column as NOT NULL | `[NotNull] public string Email;` |
+| `[Default(value)]` | Sets default value for column | `[Default("0")] public int Status;` |
+| `[AutoIncrement]` | Marks column as auto-incrementing | `[AutoIncrement] public int Id;` |
+| `[ConstraintDefault(value)]` | Database-level default constraint | `[ConstraintDefault("GETDATE()")] public DateTime CreatedAt;` |
+
+#### Reference Attributes
+
+Attributes for defining relationships between entities:
+
+```csharp
+[Reference(typeof(User), "UserId")]
+[ConstraintReferenceForeignKey("Users", "Id")]
+```
+
+| Attribute | Description | Parameters |
+|-----------|-------------|------------|
+| `[Reference]` | Defines a reference to another entity | `Type referencedType`, `string targetColumn` |
+| `[ConstraintReferenceForeignKey]` | Foreign key constraint | `string referencedTable`, `string referencedColumn` |
+
+#### Special Purpose Attributes
+
+```csharp
+[Ignore]
+[Enum(typeof(StatusEnum))]
+```
+
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| `[Ignore]` | Excludes property from database mapping | `[Ignore] public string TempProperty { get; set; }` |
+| `[Enum]` | Specifies enum type for storage | `[Enum(typeof(StatusType))] public StatusType Status { get; set; }` |
 
 ### Configuration Classes
 
@@ -481,6 +578,8 @@ Nautilus.Base follows a **provider pattern** that separates the abstraction from
   Separate Packages:      nautilus-dataprovider-*     Future Packages
   - postgresql            - mongodb                  - mysql
   - mssql                 - cosmos                   - oracle
+
+Note: Package names use `PostgreSql`, `MongoDb`, `MsSql` (consistent casing)
 ```
 
 ### Key Design Principles
@@ -497,12 +596,24 @@ Nautilus.Base follows a **provider pattern** that separates the abstraction from
 ```
 src/Nautilus.Base/
 ├── Data/
-│   ├── Attributes/              # Entity mapping attributes
+│   ├── Attributes/              # Entity mapping attributes (17 attributes)
 │   │   ├── TableAttribute.cs
 │   │   ├── PrimaryKeyAttribute.cs
 │   │   ├── ColumnAttribute.cs
 │   │   ├── ForeignKeyAttribute.cs
-│   │   └── ...
+│   │   ├── AutoIncrementAttribute.cs
+│   │   ├── VarcharAttribute.cs
+│   │   ├── CharAttribute.cs
+│   │   ├── NVarcharAttribute.cs
+│   │   ├── DecimalAttribute.cs
+│   │   ├── VarbinaryAttribute.cs
+│   │   ├── NotNullAttribute.cs
+│   │   ├── DefaultAttribute.cs
+│   │   ├── ConstraintDefaultAttribute.cs
+│   │   ├── ReferenceAttribute.cs
+│   │   ├── ConstraintReferenceForeignKeyAttribute.cs
+│   │   ├── IgnoreAttribute.cs
+│   │   └── EnumAttribute.cs
 │   ├── Entity/
 │   │   └── EntityBase.cs       # Base entity class
 │   ├── Provider/
@@ -510,19 +621,32 @@ src/Nautilus.Base/
 │   │   │   ├── DataProviderBase.cs    # Abstract provider
 │   │   │   ├── DataConnection.cs      # Connection management
 │   │   │   └── PaginationOptions.cs   # Pagination configuration
+│   │   ├── Interfaces/
+│   │   │   └── IDataProvider.cs       # Provider interface
 │   │   ├── Reflection/
 │   │   │   └── PropertyInfoCache.cs   # Reflection caching
 │   │   └── Security/
 │   │       └── SqlIdentifierValidator.cs  # SQL injection protection
+│   ├── Exceptions/              # Custom exceptions
+│   │   └── NautilusException.cs
+│   ├── Migrator/                # Database migration utilities
 │   └── DbProviderType.cs         # Database type enum
 ├── Configuration/
-│   ├── Models/
+│   ├── Models/                  # Configuration models
 │   │   ├── AppSettings.cs               # Root settings model
 │   │   ├── AppSettingBase.cs            # Base settings
 │   │   ├── DatabaseProviderSetting.cs   # DB configuration
 │   │   ├── SecuritySetting.cs           # Security settings
-│   │   └── ...
+│   │   ├── JwtAuthentication.cs         # JWT config
+│   │   ├── Swagger.cs                   # Swagger config
+│   │   ├── Kestrel.cs                   # Kestrel server config
+│   │   ├── JobSetting.cs                # Job scheduler config
+│   │   ├── Diagnostics.cs               # Diagnostics config
+│   │   ├── Aes.cs                       # AES encryption config
+│   │   ├── TokenSetting.cs              # Token settings
+│   │   └── ...                         # Additional models
 │   └── AppSettingJsonConfiguration.cs   # JSON configuration loader
+├── CompilerServicesSupport/    # Compiler services utilities
 └── Diagnostics/                 # Diagnostic utilities
 ```
 
@@ -540,9 +664,9 @@ Concrete data provider implementations are distributed as separate packages foll
    - `SaveBulk()`, `SaveBulkAsync()`: Implements bulk insert
 
 Example provider packages:
-- `Nautilus.DataProvider.PostgreSQL` - PostgreSQL support
-- `Nautilus.DataProvider.MongoDB` - MongoDB support
-- `Nautilus.DataProvider.MSSQL` - Microsoft SQL Server support
+- `Nautilus.DataProvider.PostgreSql` - PostgreSQL support
+- `Nautilus.DataProvider.MongoDb` - MongoDB support
+- `Nautilus.DataProvider.MsSql` - Microsoft SQL Server support
 
 ## Security
 
@@ -594,9 +718,9 @@ Nautilus.Base is the foundation for database access in the Nautilus ecosystem. C
 
 | Package | Description | Link |
 |---------|-------------|------|
-| `Nautilus.DataProvider.PostgreSQL` | PostgreSQL provider implementation | [GitHub](https://github.com/synthphonic/nautilus-dataprovider-postgresql) |
-| `Nautilus.DataProvider.MongoDB` | MongoDB provider implementation | [GitHub](https://github.com/synthphonic/nautilus-dataprovider-mongodb) |
-| `Nautilus.DataProvider.MSSQL` | SQL Server provider implementation | [GitHub](https://github.com/synthphonic/nautilus-dataprovider-mssql) |
+| `Nautilus.DataProvider.PostgreSql` | PostgreSQL provider implementation | [GitHub](https://github.com/synthphonic/nautilus-dataprovider-postgresql) |
+| `Nautilus.DataProvider.MongoDb` | MongoDB provider implementation | [GitHub](https://github.com/synthphonic/nautilus-dataprovider-mongodb) |
+| `Nautilus.DataProvider.MsSql` | SQL Server provider implementation | [GitHub](https://github.com/synthphonic/nautilus-dataprovider-mssql) |
 
 ## License
 
