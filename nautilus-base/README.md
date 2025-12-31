@@ -1,7 +1,7 @@
 # Nautilus.Base
 
 [![Build Status](https://github.com/synthphonic/nautilus-base/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-base/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/v/Nautilus.Base)](https://www.nuget.org/packages/Nautilus.Base/)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.Base)](https://www.nuget.org/packages/Nautilus.Base/)
 [![License: BSL-1.1](https://img.shields.io/badge/License-BSL--1.1-blue.svg)](LICENSE)
 
 A foundational .NET library providing data access abstraction and configuration management for the Nautilus ecosystem. This library implements a provider pattern to support multiple database backends through a common, consistent API, enabling developers to build database-agnostic applications with ease.

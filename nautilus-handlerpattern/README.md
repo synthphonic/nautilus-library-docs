@@ -1,7 +1,7 @@
 # Nautilus.HandlerPattern
 
 [![Build Status](https://github.com/synthphonic/nautilus-handlerpattern/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-handlerpattern/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/v/Nautilus.HandlerPattern)](https://www.nuget.org/packages/Nautilus.HandlerPattern/)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.HandlerPattern)](https://www.nuget.org/packages/Nautilus.HandlerPattern/)
 [![License: BSL-1.1](https://img.shields.io/badge/License-BSL--1.1-blue.svg)](LICENSE)
 
 A flexible .NET library implementing the Handler Pattern (Mediator/CQRS variant) with pipeline behaviors and cross-cutting concerns support. This library provides a clean architecture for processing requests through a pipeline of behaviors with built-in support for logging, validation, error handling, caching, auditing, and metrics.

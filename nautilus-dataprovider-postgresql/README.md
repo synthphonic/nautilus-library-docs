@@ -1,7 +1,7 @@
 # Nautilus.DataProvider.PostgreSql
 
 [![Build Status](https://github.com/synthphonic/nautilus-dataprovider-postgresql/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-dataprovider-postgresql/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/v/Nautilus.DataProvider.PostgreSql)](https://www.nuget.org/packages/Nautilus.DataProvider.PostgreSql/)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.DataProvider.PostgreSql)](https://www.nuget.org/packages/Nautilus.DataProvider.PostgreSql/)
 [![License: BSL-1.1](https://img.shields.io/badge/License-BSL--1.1-blue.svg)](LICENSE)
 
 A PostgreSQL data provider implementation for the Nautilus ecosystem. This library provides a concrete implementation of `DataProviderBase` from `Nautilus.Base`, enabling seamless database operations with PostgreSQL through a consistent, database-agnostic API.

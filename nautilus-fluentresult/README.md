@@ -1,7 +1,7 @@
 # Nautilus.FluentResult
 
 [![Build Status](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/v/Nautilus.FluentResult)](https://www.nuget.org/packages/Nautilus.FluentResult/)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.FluentResult)](https://www.nuget.org/packages/Nautilus.FluentResult/)
 [![License: BSL-1.1](https://img.shields.io/badge/License-BSL--1.1-blue.svg)](LICENSE)
 
 A type-safe, fluent Result Pattern implementation for .NET applications. This library provides structured error handling that avoids exceptions for expected failures, making your code more predictable and easier to test.

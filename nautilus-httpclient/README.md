@@ -1,7 +1,7 @@
 # Nautilus.HttpClient
 
 [![Build Status](https://github.com/synthphonic/nautilus-httpclient/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-httpclient/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/v/Nautilus.HttpClient)](https://www.nuget.org/packages/Nautilus.HttpClient/)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.HttpClient)](https://www.nuget.org/packages/Nautilus.HttpClient/)
 [![License: BSL-1.1](https://img.shields.io/badge/License-BSL--1.1-blue.svg)](LICENSE)
 
 A simple .NET 8 HttpClient wrapper that provides a fluent API for building HTTP requests. This library abstracts away the boilerplate of creating `HttpRequestMessage` objects with a clean, chainable interface.
