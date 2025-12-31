@@ -13,7 +13,7 @@ This repository serves as the documentation hub for Nautilus libraries, providin
 Foundational data access abstraction and configuration management
 
 [![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.Base)](https://www.nuget.org/packages/Nautilus.Base/)
-[![Build Status](https://github.com/synthphonic/nautilus-base/actions/workflows/ci.yml/badge.svg](https://github.com/synthphonic/nautilus-base/actions/workflows/ci.yml)
+[![Build Status](https://github.com/synthphonic/nautilus-base/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-base/actions/workflows/ci.yml)
 
 [View Documentation](./nautilus-base/)
 
@@ -24,7 +24,7 @@ Foundational data access abstraction and configuration management
 Type-safe Result Pattern library for .NET error handling
 
 [![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.FluentResult)](https://www.nuget.org/packages/Nautilus.FluentResult/)
-[![Build Status](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml/badge.svg](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml)
+[![Build Status](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-fluentresult/actions/workflows/ci.yml)
 
 [View Documentation](./nautilus-fluentresult/)
 
@@ -35,7 +35,7 @@ Type-safe Result Pattern library for .NET error handling
 Handler Pattern (Mediator/CQRS) with pipeline behaviors
 
 [![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.HandlerPattern)](https://www.nuget.org/packages/Nautilus.HandlerPattern/)
-[![Build Status](https://github.com/synthphonic/nautilus-handlerpattern/actions/workflows/ci.yml/badge.svg](https://github.com/synthphonic/nautilus-handlerpattern/actions/workflows/ci.yml)
+[![Build Status](https://github.com/synthphonic/nautilus-handlerpattern/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-handlerpattern/actions/workflows/ci.yml)
 
 [View Documentation](./nautilus-handlerpattern/)
 
@@ -46,7 +46,7 @@ Handler Pattern (Mediator/CQRS) with pipeline behaviors
 Fluent API wrapper for building HTTP requests with .NET HttpClient
 
 [![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.HttpClient)](https://www.nuget.org/packages/Nautilus.HttpClient/)
-[![Build Status](https://github.com/synthphonic/nautilus-httpclient/actions/workflows/ci.yml/badge.svg](https://github.com/synthphonic/nautilus-httpclient/actions/workflows/ci.yml)
+[![Build Status](https://github.com/synthphonic/nautilus-httpclient/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-httpclient/actions/workflows/ci.yml)
 
 [View Documentation](./nautilus-httpclient/)
 
@@ -57,7 +57,7 @@ Fluent API wrapper for building HTTP requests with .NET HttpClient
 PostgreSQL data provider implementation for Nautilus ecosystem
 
 [![NuGet Version](https://img.shields.io/nuget/vpre/Nautilus.DataProvider.PostgreSql)](https://www.nuget.org/packages/Nautilus.DataProvider.PostgreSql/)
-[![Build Status](https://github.com/synthphonic/nautilus-dataprovider-postgresql/actions/workflows/ci.yml/badge.svg](https://github.com/synthphonic/nautilus-dataprovider-postgresql/actions/workflows/ci.yml)
+[![Build Status](https://github.com/synthphonic/nautilus-dataprovider-postgresql/actions/workflows/ci.yml/badge.svg)](https://github.com/synthphonic/nautilus-dataprovider-postgresql/actions/workflows/ci.yml)
 
 [View Documentation](./nautilus-dataprovider-postgresql/)
 
